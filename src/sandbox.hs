@@ -11,6 +11,7 @@ main = do
   --print (describeList [1])
   --print (describeList [1,2])
   print (mapper [1,2,3])
+  print (myFilter odd [1,2,3,4,5])
 
 
 initials :: String -> String -> String
@@ -48,5 +49,10 @@ describeList ls = "The list is " ++ what ls
 
 mapper ::  (Num a) => [a] -> [a]
 mapper xs = map (\x -> x * x) xs
+
+myFilter :: (a -> Bool) -> [a] -> [a]
+myFilter _ [] = []
+myFilter fn (x:xs) | fn x = x:myFilter fn xs
+                   | otherwise = myFilter fn xs
 
 
