@@ -12,6 +12,7 @@ main = do
   --print (describeList [1,2])
   print (mapper [1,2,3])
   print (myFilter odd [1,2,3,4,5])
+  print (myReduce 0 (+) [1,2,3,4])
 
 
 initials :: String -> String -> String
@@ -55,4 +56,8 @@ myFilter _ [] = []
 myFilter fn (x:xs) | fn x = x:myFilter fn xs
                    | otherwise = myFilter fn xs
 
+
+myReduce :: a -> (a -> a -> a) -> [a] -> a
+myReduce acc _ [] = acc
+myReduce acc fn (x:xs) = myReduce (fn acc x) fn xs
 
