@@ -9,7 +9,7 @@ public class ApplicationController {
  
     @RequestMapping("home")
     public String loadHomePage(Model m) {
-        m.addAttribute("name", "CodeTutr");
-        return "home";
+        m.addAttribute("name", "Gamers Application Rocks!!");
+        return "index";
     }
 }
