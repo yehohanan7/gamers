@@ -4,8 +4,8 @@ var http = require('http');
 var path = require('path');
 
 app.configure(function () {
-    app.use(express.static(path.join(__dirname, '.')));
-    app.use(app.router);
+  app.use(express.static(path.join(__dirname, './src/main/webapp')));
+  app.use(app.router);
 });
 
 var server = http.createServer(app);
