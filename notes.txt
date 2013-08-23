@@ -1,0 +1,6 @@
+Compile CLJS
+============
+
+lein cljsbuild auto
+lein cljsbuild once
+
