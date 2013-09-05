@@ -3,7 +3,7 @@
   :cljsbuild {
     :builds [{
         ; The path to the top-level ClojureScript source directory:
-        :source-paths ["src/main/webapp/cljs"]
+        :source-paths ["src/main/cljs"]
         ; The standard ClojureScript compiler options:
         ; (See the ClojureScript compiler documentation for details.)
         :compiler {
