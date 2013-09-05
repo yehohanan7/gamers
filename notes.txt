@@ -4,3 +4,7 @@ Compile CLJS
 lein cljsbuild auto
 lein cljsbuild once
 
+REPL
+====
+
+lein trampoline cljsbuild repl-listen
