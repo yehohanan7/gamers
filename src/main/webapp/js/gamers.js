@@ -29458,6 +29458,18 @@ clojure.browser.repl.connect = function connect(repl_server_url) {
 };
 goog.provide("gamers.common.animation");
 goog.require("cljs.core");
+gamers.common.animation.not_nil_QMARK_ = cljs.core.complement.call(null, cljs.core.nil_QMARK_);
+gamers.common.animation.has_anyof_QMARK_ = function has_anyof_QMARK_(element, keys) {
+  return cljs.core.some.call(null, function(p1__3451_SHARP_) {
+    return gamers.common.animation.not_nil_QMARK_.call(null, element[p1__3451_SHARP_])
+  }, keys)
+};
+gamers.common.animation.supports3d_QMARK_ = function supports3d_QMARK_() {
+  return gamers.common.animation.has_anyof_QMARK_.call(null, document.body.style, cljs.core.PersistentVector.fromArray(["perspective", "WebkitPerspective"], true))
+};
+gamers.common.animation.transform_supported_QMARK_ = function transform_supported_QMARK_() {
+  return gamers.common.animation.has_anyof_QMARK_.call(null, document.body.style, cljs.core.PersistentVector.fromArray(["perspective", "WebkitPerspective"], true))
+};
 gamers.common.animation.animate = function animate() {
   return[cljs.core.str("animating")].join("")
 };
@@ -29473,13 +29485,13 @@ gamers.common.animation.movex = function() {
     return movex__delegate.call(this, element, x, speed, options)
   };
   movex.cljs$lang$maxFixedArity = 3;
-  movex.cljs$lang$applyTo = function(arglist__3451) {
-    var element = cljs.core.first(arglist__3451);
-    arglist__3451 = cljs.core.next(arglist__3451);
-    var x = cljs.core.first(arglist__3451);
-    arglist__3451 = cljs.core.next(arglist__3451);
-    var speed = cljs.core.first(arglist__3451);
-    var options = cljs.core.rest(arglist__3451);
+  movex.cljs$lang$applyTo = function(arglist__3452) {
+    var element = cljs.core.first(arglist__3452);
+    arglist__3452 = cljs.core.next(arglist__3452);
+    var x = cljs.core.first(arglist__3452);
+    arglist__3452 = cljs.core.next(arglist__3452);
+    var speed = cljs.core.first(arglist__3452);
+    var options = cljs.core.rest(arglist__3452);
     return movex__delegate(element, x, speed, options)
   };
   movex.cljs$core$IFn$_invoke$arity$variadic = movex__delegate;
