@@ -29459,10 +29459,29 @@ clojure.browser.repl.connect = function connect(repl_server_url) {
 goog.provide("gamers.common.animation");
 goog.require("cljs.core");
 gamers.common.animation.not_nil_QMARK_ = cljs.core.complement.call(null, cljs.core.nil_QMARK_);
+gamers.common.animation.has_attr_QMARK_ = function has_attr_QMARK_(element, attr) {
+  return gamers.common.animation.not_nil_QMARK_.call(null, element[attr])
+};
 gamers.common.animation.has_anyof_QMARK_ = function has_anyof_QMARK_(element, keys) {
   return cljs.core.some.call(null, function(p1__3451_SHARP_) {
-    return gamers.common.animation.not_nil_QMARK_.call(null, element[p1__3451_SHARP_])
+    return gamers.common.animation.has_attr_QMARK_.call(null, element, p1__3451_SHARP_)
   }, keys)
+};
+gamers.common.animation.transition_prefix = function transition_prefix() {
+  var style = document.body.style;
+  if(cljs.core.truth_(gamers.common.animation.has_attr_QMARK_.call(null, style, "webkitTransition"))) {
+    return"webkitTransition"
+  }else {
+    if(cljs.core.truth_(gamers.common.animation.has_attr_QMARK_.call(null, style, "MozTransition"))) {
+      return"MozTransition"
+    }else {
+      if("\ufdd0:else") {
+        return"transition"
+      }else {
+        return null
+      }
+    }
+  }
 };
 gamers.common.animation.supports3d_QMARK_ = function supports3d_QMARK_() {
   return gamers.common.animation.has_anyof_QMARK_.call(null, document.body.style, cljs.core.PersistentVector.fromArray(["perspective", "WebkitPerspective"], true))
