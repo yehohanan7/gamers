@@ -6,31 +6,36 @@
 (defn has-attr? [element attr]
   (not-nil? (aget element attr)))
 
+
 (defn has-anyof?
-  "Checks if key is present in element as an attribute"
-  [element keys]
-  (some #(has-attr? element %) keys))
+  "Checks if key is present in the object"
+  [object keys]
+  (some #(has-attr? object %) keys))
+
+(defn -? [object & attributes]
+  (has-anyof? object attributes))
+
 
 (defn transition-prefix
   "Identifies the browser specific transition prefix"
   []
   (let [style (-> js/document .-body .-style)]
     (cond
-      (has-attr? style "webkitTransition") "webkitTransition"
-      (has-attr? style "MozTransition") "MozTransition"
+      (-? style "webkitTransition") "webkitTransition"
+      (-? style "MozTransition") "MozTransition"
       :else "transition")))
 
 
 (defn supports3d?
   "Checks if 3d is supported by the browser"
   []
-  (has-anyof? (-> js/document .-body .-style) ["perspective" "WebkitPerspective"]))
+  (-? (-> js/document .-body .-style) "perspective" "WebkitPerspective"))
 
 
 (defn transform-supported?
   "Checkes if transform (CSS3 feature) is supported by the browser context"
   []
-  (has-anyof? (-> js/document .-body .-style) ["perspective" "WebkitPerspective"]))
+  (-? (-> js/document .-body .-style) "perspective" "WebkitPerspective"))
 
 (defn animate []
   (str "animating"))
