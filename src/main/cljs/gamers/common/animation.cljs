@@ -26,16 +26,12 @@
       :else "transition")))
 
 
-(defn supports3d?
-  "Checks if 3d is supported by the browser"
-  []
+(defn supports3d? []
   (-? (-> js/document .-body .-style) "perspective" "WebkitPerspective"))
 
 
-(defn transform-supported?
-  "Checkes if transform (CSS3 feature) is supported by the browser context"
-  []
-  (-? (-> js/document .-body .-style) "perspective" "WebkitPerspective"))
+(defn transform-supported? []
+  (-? (-> js/document .-body .-style) "WebkitTransform" "MozTransform" "transformProperty"))
 
 (defn animate []
   (str "animating"))
